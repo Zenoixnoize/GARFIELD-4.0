@@ -1,4 +1,4 @@
-/*COPYRIGHT (C) 2022 CODED BY NOIZE
+/*COPYRIGHT (C) 2022 CODED BY NOIZE.
 */
 
 const MyPnky = require('../events');
