@@ -15,7 +15,7 @@ const got = require('got');
 const axios = require('axios');
 
 // A14
-const WhatsAsenaDB = config.DATABASE.define('WhatsAsena', {
+const WhatsAsenaDB = config.DATABASE.define('GARFIELD', {
     info: {
       type: DataTypes.STRING,
       allowNull: false
