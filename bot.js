@@ -120,10 +120,10 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
         });
 
         console.log(
-            chalk.blueBright.italic('⬇️  Installing plugins...')
+            chalk.blueBright.italic('📡  Installing X-nodes...')
         );
 
-        fs.readdirSync('./plugins').forEach(plugin => {
+        fs.readdirSync('./X-nodes').forEach(plugin => {
             if(path.extname(plugin).toLowerCase() == '.js') {
                 require('./X-nodes/' + plugin);
             }
@@ -132,7 +132,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
         console.log(
             chalk.green.bold('Garfield working ' + config.WORKTYPE + ' now 🐼'));
             await conn.sendMessage(conn.user.jid, "```Garfield Started```", MessageType.text);
-            await conn.sendMessage(conn.user.jid, "```PROGRAM WORKING \nCoded by Tharindu Liyanage - https://www.facebook.com/zenoixnoize \n\n" + config.WORKTYPE + "```" , MessageType.text);
+            await conn.sendMessage(conn.user.jid, "*GARFIELD v4.0* \n ```PROGRAM WORKING \nCoded by Tharindu Liyanage - https://www.facebook.com/zenoixnoize \n\n" + config.WORKTYPE + "```" , MessageType.text);
     });
     
     conn.on('chat-update', async m => {
@@ -163,7 +163,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                 await axios.get(pp, {responseType: 'arraybuffer'}).then(async (res) => {
                 await conn.sendMessage(msg.key.remoteJid, res.data, MessageType.image, {caption:  gb.message.replace('{pp}', '').replace('{gphead}', pinkjson.subject).replace('{time}', afn_plk_).replace('{gpmaker}', pinkjson.owner).replace('{gpdesc}', pinkjson.desc).replace('{owner}', conn.user.name) }); });                           
             } else if (gb.message.includes('{gif}')) {
-                //created by afnanplk
+                //created by NOIZE
                     var plkpinky = await axios.get(config.GIF_BYE, { responseType: 'arraybuffer' })
                     var pinkjson = await conn.groupMetadata(msg.key.remoteJid)
                 await conn.sendMessage(msg.key.remoteJid, Buffer.from(plkpinky.data), MessageType.video, {mimetype: Mimetype.gif, caption: gb.message.replace('{gif}', '').replace('{time}', afn_plk_).replace('{gphead}', pinkjson.subject).replace('{gpmaker}', pinkjson.owner).replace('{gpdesc}', pinkjson.desc).replace('{owner}', conn.user.name) });
@@ -185,7 +185,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                 try { pp = await conn.getProfilePicture(msg.messageStubParameters[0]); } catch { pp = await conn.getProfilePicture(); }
                     var pinkjson = await conn.groupMetadata(msg.key.remoteJid)
                 await axios.get(pp, {responseType: 'arraybuffer'}).then(async (res) => {
-                    //created by afnanplk
+                    //created by NOIZE
                 await conn.sendMessage(msg.key.remoteJid, res.data, MessageType.image, {caption:  gb.message.replace('{pp}', '').replace('{time}', afn_plk_).replace('{gphead}', pinkjson.subject).replace('{gpmaker}', pinkjson.owner).replace('{gpdesc}', pinkjson.desc).replace('{owner}', conn.user.name).replace('{no fake}', '') }); });                           
             } else if (gb.message.includes('{gif}')) {
                 var plkpinky = await axios.get(config.WEL_GIF, { responseType: 'arraybuffer' })
