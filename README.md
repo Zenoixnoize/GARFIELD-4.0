@@ -1,5 +1,4 @@
-#LATEST GARFIELD 4.0 🐼
-Add - A NPM Package for Garfield
+
 <html><head><b><center>GARFIELD BOT v4.0 🐼 </center></head></b>
   <br>
   <br>
