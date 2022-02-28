@@ -79,9 +79,9 @@ MyPnky.addCommand({pattern: 'install ?(.*)', fromMe: true, desc: Lang.INSTALL_DE
         if (response.body.includes('groupMetadata')) DEG.level = DEG.level + 29
         if (response.body.includes('similarity')) DEG.level = DEG.level + 18
         if (response.body.includes('format')) DEG.level = DEG.level + 26
-        var X-nodes = await Db.PluginDB.findAll()
+        var plugins = await Db.PluginDB.findAll()
         var find = '';
-        await X-nodes.map((plugin) => { find += plugin.dataValues.name })
+        await plugins.map((plugin) => { find += plugin.dataValues.name })
         if (find.includes(plugin_name)) {
             await message.client.sendMessage(message.jid, LANG.duplicate, MessageType.text)
             await new Promise(r => setTimeout(r, 400))
@@ -124,11 +124,11 @@ MyPnky.addCommand({pattern: 'install ?(.*)', fromMe: true, desc: Lang.INSTALL_DE
 
 MyPnky.addCommand({pattern: 'plugin$', fromMe: true, dontAddCommandList: true, desc: Lang.PLUGIN_DESC}, (async (message, match) => {
     var mesaj = Lang.INSTALLED_FROM_REMOTE;
-    var X-nodes = await Db.PluginDB.findAll();
-    if (X-nodes.length < 1) {
+    var plugins = await Db.PluginDB.findAll();
+    if (plugins.length < 1) {
         return await message.sendMessage(Lang.NO_PLUGIN);
     } else {
-        X-nodes.map(
+        plugins.map(
             (plugin) => {
                 let vf = plugin.dataValues.url.includes('phaticusthiccy') ? msg : unmsg
                 mesaj += '```' + plugin.dataValues.name + '```: ' + plugin.dataValues.url + '\n' + vf + '\n\n';
