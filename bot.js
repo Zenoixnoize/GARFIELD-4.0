@@ -92,19 +92,19 @@ async function whatsAsena () {
     })    
 
     conn.on('connecting', async () => {
-        console.log(`${chalk.green.bold('Whats')}${chalk.blue.bold('Asena')}
+        console.log(`${chalk.green.bold('GARF')}${chalk.blue.bold('IELD')}
 ${chalk.white.bold('Version:')} ${chalk.red.bold(config.VERSION)}
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
+${chalk.blue.italic('🐼 Connecting to WhatsApp... Please wait.')}`);
     });
     
 
     conn.on('open', async () => {
         console.log(
-            chalk.green.bold('✅ Login successful!')
+            chalk.green.bold(' ✅️ Login successful!')
         );
 
         console.log(
-            chalk.blueBright.italic('⬇️ Installing external plugins...')
+            chalk.blueBright.italic(' 🛰️️ Connecting to Garfield Server...')
         );
 
         var plugins = await plugindb.PluginDB.findAll();
