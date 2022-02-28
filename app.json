@@ -126,7 +126,6 @@
         "REMOVE_BG_API_KEY": {
             "description": "Don't change",
             "required": false
-            "value": "KuZztPhpu3Ki4w4A7cksCNe6"
         },
         "DEPLOYER": {
             "description": "Enter your name here",
