@@ -410,7 +410,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                                     );
                                 }
                                 else {
-                                    return await conn.sendMessage(conn.user.jid, '🐼🐼 Sorry, I Couldnt Read This Error!... (Tharindu Liyanage fixing soon)' +
+                                    return await conn.sendMessage(conn.user.jid, '🐼 Sorry, I Couldnt Read This Error!... (Tharindu Liyanage fixing soon)' +
                                         '\n_You can write to NOIZE developers support group for more help._  https://t.me/ipandaproject '+'\n\n 🔻Reason might be \n'+ error
                                         , MessageType.text
                                     );
