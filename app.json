@@ -1,0 +1,191 @@
+{
+    "name": "GARFIELD 4.0",
+    "description": "GARFIELD BY NOIZE.",
+    "logo": "https://i.ibb.co/5TcNfYx/logo.jpg",
+    "keywords": ["whatsapp", "bot", "NOIZE", "Garfield", "bot", "fast", "ai"],
+    "repository": "https://github.com/Zenoixnoize/GARFIELD-4.0",
+    "website":   "under maintenance",
+    "success_url": "under maintenance",
+    "stack": "container",
+    "env": {
+        "GARFIELD_SESSION": {
+            "description": "GARFIELD QR GENERATOR SCANNED CODE PAST HERE.",
+            "required": true
+        },
+        "SUDO": {
+            "description": "Don't change",
+            "required": false
+        },
+        "LANGUAGE": {
+            "description": "Don't change , only English language is available",
+            "required": true,
+            "value": "en"
+        },
+        "WEL_GIF": {
+            "description": "Don't change",
+            "required": false,
+            "value": "false"
+        },
+        "BAD_WORDS": {
+            "description": "Enter the word you dont allow in your group ",
+            "required": true,
+            "value": "false"
+        },
+        "BYE_GIF": {
+            "description": "Don't change",
+            "required": false,
+            "value": "false"
+        },   
+        "PM_BLOCK": {
+            "description": "Don't change",
+            "required": true,
+            "value": "false"
+        },  
+        "NUMBER": {
+            "description": "Only enter your number if you wish ",
+            "required": false
+        },      
+        "OWNER_NAME": {
+            "description": "Only enter your name and details if desired .",
+            "required": false,
+            "value": "```GARFIELD 🐼                                                                                                                                                                                          Follow Developer Instagram - https://www.instagram.com/liyanage_tharindu_?r=nametag```"
+        },    
+        "HANDLERS": {
+            "description": "Don't change.",
+            "required": true,
+            "value": "^[.!;]"
+        },
+        "NO_LOG": {
+            "description": "Don't change",
+            "required": true,
+            "value": "true"
+        },
+        "SEND_READ": {
+            "description": "Don't change",
+            "required": true,
+            "value": "true"
+        },
+           "ALL_CAPTION": {
+            "description": "Add captions to photos and videos produced by Garfield if you like them, or do not change them. ",
+            "required": false,
+            "value": "```Like Us Facebook - https://www.facebook.com/garfieldbots/```"
+        },
+        "HEROKU": {
+            "description": "Don't change.",
+            "required": true,
+            "value": "true"
+        },
+         "BOT_NAME": {
+            "description": "Enter your developer name Or do not change ",
+            "required": false,
+            "value": "𝗡𝗢𝗜𝗭𝗘 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥𝗦"
+        },      
+        "HEROKU_API_KEY": {
+            "description": "Enter your Heroku API code.                                        Link -                           https://dashboard.heroku.com/account ",
+            "required": true
+        },
+        "MUTE_MESSAGE": {
+            "description": "Don't change.",
+            "required": false,
+            "value": "default"
+        },
+        "BLOCK_CHAT": {
+            "description": "Don't change",
+            "required": false,
+            "value": "false"
+        },
+        "UNMUTE_MESSAGE": {
+            "description": "Don't change.",
+            "required": false,
+            "value": "default"
+        },
+        "BLOCK_MESSAGE": {
+            "description": "Don't change.",
+            "required": false,
+            "value": "default"
+        },
+        "UNBLOCK_MESSAGE": {
+            "description": "Don't change.",
+            "required": false,
+            "value": "default"
+        },
+        "WORK_TYPE": {
+            "description": "Garfield  working Type. If you use “public”, everyone can use the bot. Else if you use “private”, only you can use your bot. and if you use “admin”, only admin can use bot and not all feature (only features needed to maintain a standerd group)                                            -Coded by Tharindu Liyanage.",
+            "required": true,
+            "value": "public"
+        },
+        "HEROKU_APP_NAME": {
+            "description": "Re-enter the app name you entered .",
+            "required": true
+        },
+        "DEBUG": {
+            "description": "Don't change.",
+            "required": true,
+            "value": "false"
+        },
+        "REMOVE_BG_API_KEY": {
+            "description": "Don't change",
+            "required": false
+            "value": "KuZztPhpu3Ki4w4A7cksCNe6"
+        },
+        "DEPLOYER": {
+            "description": "Enter your name here",
+            "required": false
+        },
+        "ALIVE_MESSAGE": {
+            "description": "Customizable Alive Message! use {pp} if you want to add profile picture also add {qt} if you want to add qoutes in your welcome message",
+            "required": false,
+            "value": "i am alive  \n\n ```coded by Tharindu Liyanage ```\n\n```{qt}```"
+        },
+        "BAN_MESSAGE": {
+            "description": "Don't change.",
+            "required": false,
+            "value": "```You're banded. Contact admin 🐼```"
+        },
+        "ADD_MESSAGE": {
+            "description": "Don't change.",
+            "required": false,
+            "value": "default"
+        },
+        "KICKME_MESSAGE": {
+            "description": "Don't change.",
+            "required": false,
+            "value": "\n ```I'am leave 🐼``` \n"
+        },
+        "PROMOTE_MESSAGE": {
+            "description": "Don't change.",
+            "required": false,
+            "value": "default"
+        },
+        "CHANGE_BGM_TO": {
+            "description": "Don't change",
+            "required": false,
+            "value": "one"
+        },
+        "DEMOTE_MESSAGE": {
+            "description": "Don't change.",
+            "required": false,
+            "value": "default"
+        },
+        "AFK_MESSAGE": {
+            "description": "Don't change",
+            "required": false,
+            "value": "default"
+        },
+        "TAG_REPLY": {
+            "description": "Don't change",
+            "required": false          
+        },
+        "NO_ONLINE": {
+            "description": "Don't change",
+            "required": false,
+            "value": "true"
+        }
+    },
+    "addons": [{
+      "plan": "heroku-postgresql"
+    }],
+    "buildpacks": [{
+      "url": "heroku-community/apt"
+      }]
+  }
