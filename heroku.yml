@@ -1,0 +1,5 @@
+build:
+  docker:
+      worker: /Development-4.0/Dockerfile
+run:
+   worker: npm start
