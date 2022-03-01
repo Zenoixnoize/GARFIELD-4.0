@@ -1,7 +1,4 @@
-/* Codded by @phaticusthiccy
-Telegram: t.me/phaticusthiccy
-Instagram: www.instagram.com/kyrie.baran
-*/
+/*COPYRIGHT (C) 2022 CODED BY NOIZE */
 
 const Asena = require('../events');
 const { MessageType, MessageOptions, Mimetype } = require('@adiwajshing/baileys');
@@ -12,6 +9,7 @@ const ffmpeg = require('fluent-ffmpeg');
 const {execFile} = require('child_process');
 const cwebp = require('cwebp-bin');
 let wk = Config.WORKTYPE == 'public' ? false : true
+const Asena = required('../Src/stack');
 const request = require('request');
 
 const Language = require('../language');
@@ -30,7 +28,7 @@ if (Config.LANG == 'ML') description = 'എല്ലാ ttp കമാൻഡു�
 if (Config.LANG == 'PT') description = 'Mostra todos os comandos ttp.', cmd = '*Comando:* ', cmd_desc = '*Explicação:* '
 if (Config.LANG == 'ID') description = '*Menampilkan semua perintah ttp.', cmd = '*Memerintah:* ', cmd_desc = '*Penjelasan:* '
 
-MyPnky.addCommand({ pattern: 'allttp$', fromMe: wk, desc: description }, (async (message, match) => {
+Asena.addCommand({ pattern: 'allttp$', fromMe: wk, desc: description }, (async (message, match) => {
   var t1 = Lang.TTP_DESC
   var t2 = Lang.ATTP_DESC
   var t3 = Config.LANG == 'TR' || Config.LANG == 'AZ' ? "Yazıyı su temalı sticker'e çevirir." : "Converts text to water-themed sticker."
@@ -55,7 +53,7 @@ MyPnky.addCommand({ pattern: 'allttp$', fromMe: wk, desc: description }, (async 
     
   await message.client.sendMessage(message.jid,payload, MessageType.text)
 }));
-MyPnky.addCommand({ pattern: 'ttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'ttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var uri = encodeURI(text)
@@ -68,7 +66,7 @@ MyPnky.addCommand({ pattern: 'ttp ?(.*)', fromMe: wk, dontAddCommandList: true }
     await message.client.sendMessage(message.jid,Buffer.from(ttinullimage.data), MessageType.image, { mimetype: Mimetype.png, caption: 'Made by Garfield' })
   }
 }));
-MyPnky.addCommand({ pattern: 'attp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'attp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var uri = encodeURI(text)
@@ -81,7 +79,7 @@ MyPnky.addCommand({ pattern: 'attp ?(.*)', fromMe: wk, dontAddCommandList: true 
     await message.client.sendMessage(message.jid,Buffer.from(ttinullimage.data), MessageType.sticker, { mimetype: Mimetype.webp })
   }
 }));
-MyPnky.addCommand({ pattern: 'wttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'wttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Water?_variations=true&text=', '&_loc=catdynamic')
@@ -114,7 +112,7 @@ MyPnky.addCommand({ pattern: 'wttp ?(.*)', fromMe: wk, dontAddCommandList: true 
     })
   }
 }));
-MyPnky.addCommand({ pattern: 'http ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'http ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Style?_variations=true&text=', '&_loc=catdynamic')
@@ -147,7 +145,7 @@ MyPnky.addCommand({ pattern: 'http ?(.*)', fromMe: wk, dontAddCommandList: true 
     })
   }
 }));
-MyPnky.addCommand({ pattern: 'bttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'bttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Blackbird?_variations=true&text=', '&_loc=catdynamic')
@@ -180,7 +178,7 @@ MyPnky.addCommand({ pattern: 'bttp ?(.*)', fromMe: wk, dontAddCommandList: true 
     })
   }
 }));
-MyPnky.addCommand({ pattern: 'gttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'gttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Fluffy?_variations=true&text=', '&_loc=catdynamic')
@@ -213,7 +211,7 @@ MyPnky.addCommand({ pattern: 'gttp ?(.*)', fromMe: wk, dontAddCommandList: true 
     })
   }
 }));
-MyPnky.addCommand({ pattern: 'sttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'sttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Smurfs?_variations=true&text=', '&_loc=catdynamic')
@@ -246,7 +244,7 @@ MyPnky.addCommand({ pattern: 'sttp ?(.*)', fromMe: wk, dontAddCommandList: true 
     })
   }
 }));
-MyPnky.addCommand({ pattern: 'ettp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'ettp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Electric?_variations=true&text=', '&_loc=catdynamic')
@@ -279,7 +277,7 @@ MyPnky.addCommand({ pattern: 'ettp ?(.*)', fromMe: wk, dontAddCommandList: true 
     })
   }
 }));
-MyPnky.addCommand({ pattern: 'ahttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'ahttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Highlight-Animation?_variations=true&text=', '&_loc=catdynamic')
@@ -312,7 +310,7 @@ MyPnky.addCommand({ pattern: 'ahttp ?(.*)', fromMe: wk, dontAddCommandList: true
     })
   }
 }));
-MyPnky.addCommand({ pattern: 'pttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+Asena.addCommand({ pattern: 'pttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
   if (message.reply_message) {
     var text = message.reply_message.text
     var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Memories-Animation?_variations=true&text=', '&_loc=catdynamic')
