@@ -858,7 +858,7 @@ else if (config.WORKTYPE == 'public') {
             });
     }));
 
-MyPnky.addCommand({pattern: 'video ?(.*)', fromMe: false, desc: Lang.VIDEO_DESC}, (async (message, match) => { 
+    MyPnky.addCommand({pattern: 'video ?(.*)', fromMe: false, desc: Lang.VIDEO_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_VIDEO,MessageType.text);    
     
@@ -876,15 +876,14 @@ MyPnky.addCommand({pattern: 'video ?(.*)', fromMe: false, desc: Lang.VIDEO_DESC}
         }
         var reply = await message.client.sendMessage(message.jid,Lang.DOWNLOADING_VIDEO,MessageType.text);
 
-        var yt = ytdl(VID, {filter: format => format.container === 'mp4' && ['720p', '480p', '360p', '240p', '144p'].map(() => true)});
+        var yt = ytdl(VID, {filter: format => format.container === 'mp4' && ['480p', '360p', '240p', '144p'].map(() => true)});
         yt.pipe(fs.createWriteStream('./' + VID + '.mp4'));
 
         yt.on('end', async () => {
             reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_VIDEO,MessageType.text);
-            await message.client.sendMessage(message.jid,fs.readFileSync('./' + VID + '.mp4'), MessageType.video, {mimetype: Mimetype.mp4});
+            await message.client.sendMessage(message.jid,fs.readFileSync('./' + VID + '.mp4'), MessageType.video, {quoted: message.data ,mimetype: Mimetype.mp4});
         });
     }));
-
 
     MyPnky.addCommand({pattern: 'yt ?(.*)', fromMe: false, desc: Lang.YT_DESC}, (async (message, match) => { 
 
@@ -1258,11 +1257,11 @@ await message.client.sendMessage(message.jid, {displayname: "Garfield", vcard: p
                 await message.reply(`Error : \n${err.message}`, MessageType.text)
             }
         } 
-        else if (match[1] === "nl" || match[1] === "Nl" || match[1] === "NL" || match[1].includes('netherland') ) {
+        else if (match[1] === "lk" || match[1] === "Lk" || match[1] === "LK" || match[1].includes('Sri lanka') ) {
             try{
-                const respo = await got("https://coronavirus-19-api.herokuapp.com/countries/Netherlands").then(async ok  => {
+                const respo = await got("https://coronavirus-19-api.herokuapp.com/countries/Sri%20Lanka").then(async ok  => {
                     resp = JSON.parse(ok.body);
-                    await message.reply(`🇳🇱 *Datas for Netherlands:*\n😷 *Total Cases:* ${resp.cases}\n🏥 *Daily Cases:* ${resp.todayCases}\n⚰️ *Total Deaths:* ${resp.deaths}\n☠️ *Daily Deaths:* ${resp.todayDeaths}\n💊 *Total Recovered:* ${resp.recovered}\n😷 *Active Cases:* ${resp.active}\n🆘 *Critical Cases:* ${resp.critical}\n🧪 *Total Test:* ${resp.totalTests}`);
+                    await message.reply(`🇱🇰 *Datas for Sri Lanka:*\n😷 *Total Cases:* ${resp.cases}\n🏥 *Daily Cases:* ${resp.todayCases}\n⚰️ *Total Deaths:* ${resp.deaths}\n☠️ *Daily Deaths:* ${resp.todayDeaths}\n💊 *Total Recovered:* ${resp.recovered}\n😷 *Active Cases:* ${resp.active}\n🆘 *Critical Cases:* ${resp.critical}\n🧪 *Total Test:* ${resp.totalTests}`);
 
                 });
 
