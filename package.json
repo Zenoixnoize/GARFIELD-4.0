@@ -40,6 +40,7 @@
     "deepai": "^=1.0.17",
     "cwebp-bin": "^6.1.1",
     "tinyurl": "^=1.1.7",
+    "@phaticusthiccy/open-apis": "^1.4.0",
     "dotenv": "^=16.0.0",
     "tiktok-scraper": "1.4.36",
     "request": "2.88.2",
