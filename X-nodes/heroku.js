@@ -11,7 +11,7 @@ const Heroku = require('heroku-client');
 const {secondsToHms} = require('./afk');
 const got = require('got');
 const {MessageType} = require('@adiwajshing/baileys');
-const A14 = require('./A14/greetings');
+const sql = require('./A14/greetings');
 
 const Language = require('../language');
 const Lang = Language.getString('heroku');
@@ -44,12 +44,12 @@ MyPnky.addCommand({pattern: 'degis ?(.*)', fromMe: true, dontAddCommandList: tru
     }
     else if (match[1] == 'welcome' && message.reply_message) {
         await message.client.sendMessage(message.jid, Lang.SUCC, MessageType.text);
-        await A14.setMessage(message.jid, 'welcome', message.reply_message.text)
+        await sql.setMessage(message.jid, 'welcome', message.reply_message.text)
         await message.client.sendMessage(message.jid, Lang.GR_DEL, MessageType.text);
     }
     else if (match[1] == 'goodbye' && message.reply_message) {
         await message.client.sendMessage(message.jid, Lang.SUCC, MessageType.text);
-        await A14.setMessage(message.jid, 'goodbye', message.reply_message.text)
+        await sql.setMessage(message.jid, 'goodbye', message.reply_message.text)
         await message.client.sendMessage(message.jid, Lang.GR_DEL, MessageType.text);
     }
     else if (match[1] == 'mute' && message.reply_message) {
