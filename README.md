@@ -19,6 +19,8 @@
 
 ## 🔎 What is GARFIELD ?
 **Garfield,** is a WhatsApp helper bot written by [ZENOI](https://github.com/Zenoixnoize) Does not log into your account It is written on WhatsApp Web API.
+<br>
+**.menu** - To get the menu 🐼
  
 ### The Method
 
