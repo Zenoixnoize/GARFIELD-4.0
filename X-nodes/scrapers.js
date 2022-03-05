@@ -853,12 +853,17 @@ else if (config.WORKTYPE == 'public') {
                     });
                 writer.addTag();
 
-                reply = await message.client.sendMessage(message.jid,fs.readFileSync('./' + title + '.jpg'), MessageType.image, { caption: '\n```Song Name :\n'+ title +' 🐼```\n\n' + Lang.UPLOADING_SONG +'\n' });
+                reply = await message.client.sendMessage(message.jid,fs.readFileSync('./' + title + '.jpg'), MessageType.image, { caption: '\n```Song Name -\n'+ title +' 🐼```\n\n' + Lang.UPLOADING_SONG +'\n' });
                 await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.audio, {quoted: message.data , mimetype: Mimetype.mp4Audio, ptt: false});
             });
     }));
 
-    MyPnky.addCommand({pattern: 'video ?(.*)', fromMe: true, desc: Lang.VIDEO_DESC}, (async (message, match) => { 
+    MyPnky.addCommand({pattern: 'video ?(.*)', fromMe: false, desc: Lang.VIDEO_DESC}, (async (message, match) => { 
+
+        if (message.jid === '905524317852-1612300121@g.us') {
+
+            return;
+        }
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_VIDEO,MessageType.text);    
     
@@ -874,8 +879,9 @@ else if (config.WORKTYPE == 'public') {
         yt.pipe(fs.createWriteStream('./' + arama.videoId + '.mp4'));
 
         yt.on('end', async () => {
-            reply = await message.client.sendMessage(message.jid,,MessageType.text);
+            reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_VIDEO,MessageType.text);
             await message.client.sendMessage(message.jid,fs.readFileSync('./' + arama.videoId + '.mp4'), MessageType.video, {mimetype: Mimetype.mp4, contextInfo: { forwardingScore: 1, isForwarded: true }, quoted: message.data, caption: '\n```'+ arama.title +'```\n\n'+ Lang.UPLOADING_VIDEO +'\n'});
+
         });
     }));
 
