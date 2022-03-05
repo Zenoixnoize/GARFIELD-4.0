@@ -1279,4 +1279,5 @@ await message.client.sendMessage(message.jid, {displayname: "Garfield", vcard: p
     }));
     
 }
+}
 
