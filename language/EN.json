@@ -206,7 +206,7 @@
             "VIDEO_DESC": "Downloads video from YouTube.",
             "NEED_VIDEO": "*Please write a video link! 🐼*\n*Example:* ```.video https://youtu.be/msiaMwYcK0c``` \n\nif .video does not work try .need",
             "DOWNLOADING_VIDEO": "```Garfield Downloading 🐼 🎥 ```",
-            "UPLOADING_VIDEO": "*Garfield Uploading ☁️*",
+            "UPLOADING_VIDEO": "```Garfield Uploading ☁️```",
             "YT_DESC": "It searchs on YouTube.",
             "NEED_WORDS": "```Please write a few words!```",
             "GETTING_VIDEOS": "```Garfield bringing videos... 🐼```",
