@@ -25,7 +25,7 @@
 ### The Method
 
 <center>
-<a href="https://replit.com/@zenoi/GARFIELD-QR-GENERTOR?v=1"><img src="https://i.ibb.co/bFngNWY/Pics-Art-22-02-28-19-10-09-246.png" alt="Pics-Art-02-24-01-59-18" width="400" height="400"></a>
+<a href="https://replit.com/@zenoi/GARFIELD-QR-GENERTOR?v=1"><img src="https://i.ibb.co/bFngNWY/Pics-Art-22-02-28-19-10-09-246.png" alt="Pics-Art-02-24-01-59-18" width="350" height="350"></a>
 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FZenoixnoize%2FGARFIELD-4.0&template=https%3A%2F%2Fgithub.com%2FZenoixnoize%2FGARFIELD-4.0)
