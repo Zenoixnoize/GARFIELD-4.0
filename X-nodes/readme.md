@@ -1,64 +1,62 @@
-
-<html><head><b><center>GARFIELD BOT v4.0 🐼 </center></head></b>
-  <br>
-  <br>
-  
-  
-</html>
-
+# COMING SOON iPANDA -WHATSAPP-BOT
+Make own whatsapp bot
 
 <div align="center">
-  <img src="https://i.ibb.co/5TcNfYx/logo.jpg" width="400" height="400">
-  <h1>🐼 GARFIELD WHATSAPP BOT LATEST VERSION</h1>
+
+
+  <img src="https://i.ibb.co/gdk3Vhs/IMG-20220218-084605-951.jpg" width="300" height="300">
+
+
+
+  <h1>🐼 iPANDA</h1>
+
+
+
 </div>
-<p align="center">
-    <br>
-</p>
-
-----
-
-## 🔎 What is GARFIELD ?
-**Garfield,** is a WhatsApp helper bot written by [ZENOI](https://github.com/Zenoixnoize) Does not log into your account It is written on WhatsApp Web API.
-<br>
-**.menu** - To get the menu 🐼
- 
-### The Method
-
-<center>
-<a href="https://replit.com/@zenoi/GARFIELD-QR-GENERTOR?v=1"><img src="https://i.ibb.co/bFngNWY/Pics-Art-22-02-28-19-10-09-246.png" alt="Pics-Art-02-24-01-59-18" width="350" height="350"></a>
 
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FZenoixnoize%2FGARFIELD-4.0&template=https%3A%2F%2Fgithub.com%2FZenoixnoize%2FGARFIELD-4.0)
-
-  </center>
-
-```js
-git clone https://github.com/Zenoixnoize/GARFIELD-4.0.git
-cd GARFIELD-4.0
-npm i
-node bot.js
-```
-
-## F.A.Q
-Answer a few frequently asked questions;
-### Can you read my messages?
-This project is open source so all the codes are clear. Neither less nor more; you can look what you want. **We absolutely do not have access to your accounts.**
-
-### What about our security?
-If you are concerned about security, you can install it on your own computer. If you think someone else has captured your data, simply click on **Whatsapp> Three Dots> Whatsapp Web> Logout** from all sessions button.
-
-### Is it paid?
-**Of course not.** It will never happen. But you can donate to us. You can reach me via [Telegram](https://t.me/ipandaproject) .
 
 
-### ⚠️ Warning! 
-```
-Due to Userbot; Your WhatsApp account may be banned.
-This is an open source project, you are responsible for everything you do. 
-Absolutely, Asena executives do not accept responsibility.
-By establishing the Asena, you are deemed to have accepted these responsibilities.
-```
+<html><head><b><center>Creat new Heroku account<b></head>
+  
+  Then get your Qr code from this and go to Link in device and scan it 
+  
+  <br>
+  
+  [![Click this get Qr](https://repl.it/badge/github/Quiec/whatsasena)](https://replit.com/@zenoi/ZENOI-QR-GENERATOR?v=1)</center>
 
-## DEVELOPER
+  <head><center><b>Next, create your own bot by clicking on the Deploy button below</head></center></b>
+  
+  <br>
+  <br>
+  
+  [![Deploy your own bot](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Vihanga2005/-iPANDA-2.0) 
+  
+  
+  
+  </html>
+  
+  [Click to Creat heroku account](https://signup.heroku.com/) Select Python as your programming language
+  
+  
+  
+  [CLICK to get your heroku API key](https://dashboard.heroku.com/account)
+  
+  [Click to get your removebg API key](https://www.remove.bg/api)
+  
+  
+  Click the run on [this button](https://replit.com/@zenoi/ZENOI-QR-GENERATOR?v=1) and  Go Linked device and scan the QR code and you will get a code from your number
+  
 
-<table><tr><th>Ｚ Ξ ＮＯＩ</th></tr><tr><td><a href="https://github.com/Zenoixnoize"><img src="https://i.ibb.co/mBVtxkp/Screenshot-20220218-213033.jpg" width="180"</td></tr>
+  <a href="Go to Whatsapp Linked device and scan the QR code and you will get a code from your number "><img src="https://i.ibb.co/W25vzyL/Screenshot-20220224-005804.jpg" alt="Screenshot-20220224-005804" border="0"></a>
+  
+  [Click here after](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FVihanga2005%2F-iPANDA-2.0) creating Heroku account and Use lowercase (Simple) letters in the App Name field   
+  Example - applebot
+  
+  <a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FVihanga2005%2F-iPANDA-2.0"><img src="https://i.ibb.co/2y2p6Gq/Screenshot-20220224-010140.jpg" alt="Screenshot-20220224-010140" border="0"></a>
+  
+  
+  [Join Telegram  helping group ](https://t.me/ipandaproject)
+  
+  
+  <table><tr><th>Ｚ Ξ ＮＯＩ</th><th>Vihanga Nethmina </th></tr><tr><td><a href="https://github.com/Zenoixnoize"><img src="https://i.ibb.co/mBVtxkp/Screenshot-20220218-213033.jpg" width="180" alt="Vihanga Nethmina"></a></td><td><a href="https://www.facebook.com/profile.php?id=100069571778344"><img src="https://i.ibb.co/0FbqpbV/IMG-20220224-001245-089-2-03.jpg" width="180" alt="Tharindu Liyanage"></a></td></tr><tr><td>Owner and main developer</td><td>Developer</td></tr>
