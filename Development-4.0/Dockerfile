@@ -1,4 +1,4 @@
-FROM Zenoixnoize/GARFIELD_4.0:latest
+FROM zenoixnoize/garfieldllc:latest
 
 RUN git clone https://github.com/Zenoixnoize/GARFIELD-4.0 /root/WhatsAsenaDuplicated
 WORKDIR /root/WhatsAsenaDuplicated/
