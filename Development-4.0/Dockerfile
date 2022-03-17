@@ -1,9 +1,10 @@
 FROM fusuf/whatsasena:latest
 
-RUN git clone https://github.com/Zenoixnoize/GARFIELD-4.0 /root/WhatsAsenaDuplicate
+RUN git clone https://github.com/Zenoixnoize/GARFIELD-4.0 /root/WhatsAsenaDuplicated
 WORKDIR /root/WhatsAsenaDuplicated/
 ENV TZ=Asia/Colombo
-RUN yarn install --no-audit
 RUN npm install supervisor -g
-RUN git clone https://github.com/Zenoixnoize/uploads 
+RUN yarn install --no-audit
+RUN git clone https://github.com/zenoixnoize/uploads
+
 CMD ["node", "bot.js"]
