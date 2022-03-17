@@ -1,10 +1,10 @@
-FROM quay.io/lyfe00011/test:beta
+FROM fusuf/whatsasena:latest
 
-RUN npm install -g npm@8.5.1
-RUN git clone https://github.com/Zenoixnoize/GARFIELD-4.0 /root/WhatsAsenaDuplicated
+RUN git clone https://github.com/Zenoixnoize/GARFIELD-4.0 /root/WhatsAsenaDuplicate
 WORKDIR /root/WhatsAsenaDuplicated/
+ENV TZ=Asia/Colombo
 RUN yarn install --no-audit
-RUN yarn add ytdl-core@latest
+RUN npm install supervisor -g
 RUN git clone https://github.com/Zenoixnoize/uploads
 RUN cp -R /root/Utils/* /root/WhatsAsenaDuplicated 
 CMD ["node", "bot.js"]
