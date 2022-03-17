@@ -1,4 +1,4 @@
-const Trex = require('../events');
+const MyPnky = require('../events');
 const {MessageType,Mimetype} = require('@adiwajshing/baileys');
 const Config = require('../config');
 
