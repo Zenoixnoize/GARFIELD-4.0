@@ -1,8 +1,7 @@
-FROM fusuf/whatsasena:publicbeta
+FROM quay.io/lyfe00011/test:beta
 
 RUN git clone https://github.com/Zenoixnoize/GARFIELD-4.0 /root/WhatsAsenaDuplicated
 WORKDIR /root/WhatsAsenaDuplicated/
-WORKDIR /root/Utils
 ENV TZ=Asia/Colombo
 RUN npm install supervisor -g
 RUN yarn install --no-audit
