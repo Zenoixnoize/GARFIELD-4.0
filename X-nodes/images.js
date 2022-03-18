@@ -804,7 +804,7 @@ else if (Config.WORKTYPE == 'public') {
 
         var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
 
-        await message.client.sendMessage(message.jid, Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: '🐼 𝗕𝗢𝗧 𝗡𝗔𝗠𝗘 - 𝗚𝗔𝗥𝗙𝗜𝗘𝗟𝗗\n🐼 𝗩𝗘𝗥𝗦𝗜𝗢𝗡 - *V 4.0*\n🐼 𝗪𝗘𝗕𝗦𝗜𝗧𝗘 - https://garfieldbot.yolasite.com/ \n🐼 𝗕𝗢𝗧 𝗗𝗘𝗣𝗟𝗢𝗬𝗘𝗥/𝗢𝗪𝗡𝗘𝗥  - '+ Config.PLK + ' \n🐼 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗠𝗘𝗡𝗧 - 𝗡𝗢𝗜𝗭𝗘\n🐼 𝗦𝗘𝗥𝗩𝗘𝗥 𝗡𝗔𝗠𝗘 - 𝗫-𝗡𝗢𝗗𝗘𝗦 𝗦𝗘𝗥𝗩𝗘𝗥 𝗕𝗬 𝗡𝗢𝗜𝗭𝗘\n\n🐼 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥 𝗗𝗘𝗧𝗔𝗜𝗟𝗦\n*- Hi 🥰 I m*\n*ＮＯＩＺ Ξ*\n*I am 16 years old*\n*developer... From Sri Lanka 🇱🇰*\n*I am a Learning. Not more..*\n*Also I am Student* '})
+        await message.client.sendMessage(message.jid, Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: '🐼 𝗕𝗢𝗧 𝗡𝗔𝗠𝗘 - 𝗚𝗔𝗥𝗙𝗜𝗘𝗟𝗗\n🐼 𝗩𝗘𝗥𝗦𝗜𝗢𝗡 - *V 4.0*\n🐼 𝗪𝗘𝗕𝗦𝗜𝗧𝗘 - https://garfieldbot.yolasite.com/ \n🐼 𝗕𝗢𝗧 𝗗𝗘𝗣𝗟𝗢𝗬𝗘𝗥/𝗢𝗪𝗡𝗘𝗥  - '+ Config.PLK + ' \n🐼 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗠𝗘𝗡𝗧 - 𝗡𝗢𝗜𝗭𝗘\n🐼 𝗦𝗘𝗥𝗩𝗘𝗥 𝗡𝗔𝗠𝗘 - *𝖷 𝖭𝖮𝖣Ξ𝖲 𝖲Ξ𝖱𝖵Ξ𝖱 𝖡𝖸 𝖭𝖮𝖨𝖹Ξ*\n\n🐼 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥 𝗡𝗢𝗧𝗜𝗖𝗘\n*- Hi 🥰 I m*\n*ＮＯＩＺ Ξ*\n*I am 16 years old*\n*developer... From Sri Lanka 🇱🇰*\n*I am a Learning. Not more..*\n*Also I am Student* '})
 
     }));
     
