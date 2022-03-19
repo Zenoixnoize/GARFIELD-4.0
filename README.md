@@ -8,7 +8,7 @@
 
 
 <div align="center">
-  <img src="https://i.ibb.co/5TcNfYx/logo.jpg" width="400" height="400">
+  <img src="https://i.ibb.co/qmR14hQ/Pics-Art-22-03-18-19-34-01-459.png" width="400" height="400">
   <h1>🐼 GARFIELD WHATSAPP BOT LATEST VERSION</h1>
 </div>
 <p align="center">
