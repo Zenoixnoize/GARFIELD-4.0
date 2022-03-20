@@ -799,12 +799,12 @@ else if (Config.WORKTYPE == 'public') {
         var r_text = new Array ();
 
         r_text[0] = "https://i.ibb.co/QQtRQc4/Screenshot-20210530-211956.jpg";
-        r_text[1] = "https://i.ibb.co/khv4HH7/Pics-Art-22-03-17-16-51-13-972-04.jpg";
+        r_text[1] = "https://i.ibb.co/54BKnkB/Pics-Art-03-20-10-07-48.png";
         var i = Math.floor(2*Math.random())
 
         var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
 
-        await message.client.sendMessage(message.jid, Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: '🐼 𝗕𝗢𝗧 𝗡𝗔𝗠𝗘 - 𝗚𝗔𝗥𝗙𝗜𝗘𝗟𝗗\n🐼 𝗩𝗘𝗥𝗦𝗜𝗢𝗡 - *V 4.0*\n🐼 𝗪𝗘𝗕𝗦𝗜𝗧𝗘 - https://garfieldbot.yolasite.com/ \n🐼 𝗕𝗢𝗧 𝗗𝗘𝗣𝗟𝗢𝗬𝗘𝗥/𝗢𝗪𝗡𝗘𝗥  - '+ Config.PLK + ' \n🐼 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗠𝗘𝗡𝗧 - 𝗡𝗢𝗜𝗭𝗘\n🐼 𝗦𝗘𝗥𝗩𝗘𝗥 𝗡𝗔𝗠𝗘 - *𝖷 𝖭𝖮𝖣Ξ𝖲 𝖲Ξ𝖱𝖵Ξ𝖱 𝖡𝖸 𝖭𝖮𝖨𝖹Ξ*\n\n🐼 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥 𝗡𝗢𝗧𝗜𝗖𝗘\n*- Hi 🥰 I m*\n*ＮＯＩＺ Ξ*\n*I am 16 years old*\n*developer... From Sri Lanka 🇱🇰*\n*I am a Learning. Not more..*\n*Also I am Student* '})
+        await message.client.sendMessage(message.jid, Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: '🐼 𝗕𝗢𝗧 𝗡𝗔𝗠𝗘 - 𝗚𝗔𝗥𝗙𝗜𝗘𝗟𝗗\n🐼 𝗩𝗘𝗥𝗦𝗜𝗢𝗡 - *V 4.0*\n🐼 𝗪𝗘𝗕𝗦𝗜𝗧𝗘 - https://garfieldbot.yolasite.com/ \n🐼 𝗕𝗢𝗧 𝗗𝗘𝗣𝗟𝗢𝗬𝗘𝗥/𝗢𝗪𝗡𝗘𝗥  - '+ Config.PLK + ' \n🐼 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗠𝗘𝗡𝗧 - 𝗡𝗢𝗜𝗭𝗘\n🐼 𝗦𝗘𝗥𝗩𝗘𝗥 𝗡𝗔𝗠𝗘 - *𝖷 𝖭𝖮𝖣Ξ𝖲 𝖲Ξ𝖱𝖵Ξ𝖱 𝖡𝖸 𝖭𝖮𝖨𝖹Ξ*\n\n  𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥 𝗡𝗢𝗧𝗜𝗖𝗘 💌\n*- Hi 🥰 I m*\n*ＮＯＩＺ Ξ*\n*I am 16 years old*\n*developer... From Sri Lanka 🇱🇰*\n*I am a Learning. Not more..*\n*Also I am Student* '})
 
     }));
     
