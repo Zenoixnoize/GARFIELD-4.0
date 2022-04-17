@@ -1,3 +1,5 @@
+## Garfield v6.0 Released now [Click to get latest version](https://github.com/Zenoixnoize/GARFIELD-6.0)
+
 
 <html><head><b><center>GARFIELD BOT v4.0 🐼 </center></head></b>
   <br>
@@ -9,7 +11,7 @@
 
 <div align="center">
   <img src="https://i.ibb.co/qmR14hQ/Pics-Art-22-03-18-19-34-01-459.png" width="400" height="400">
-  <h1>🐼 GARFIELD WHATSAPP BOT LATEST VERSION</h1>
+  <h1>🐼 GARFIELD WHATSAPP BOT 4.0 VERSION(OLD)</h1>
 </div>
 <p align="center">
     <br>
